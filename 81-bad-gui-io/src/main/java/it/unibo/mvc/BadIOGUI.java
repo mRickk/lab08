@@ -17,6 +17,8 @@ import java.io.PrintStream;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -76,12 +78,15 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try (FileReader r = new FileReader(PATH, StandardCharsets.UTF_8)) {
-                    System.out.println(r.read());                   
+                try {
+                    List<String> lineList = Files.readAllLines(Path.of(PATH), StandardCharsets.UTF_8);
+                    for (String line : lineList) {
+                        System.out.println(line);
+                    }
                 } catch (IOException e1) {
-                    JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(frame, e1, "ERROR", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace();
-                }
+                }    
             }
 
         });
