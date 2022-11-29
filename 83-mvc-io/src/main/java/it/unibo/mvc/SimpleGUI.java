@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.text.MessageFormat;
 import java.util.List;
 
 /**
